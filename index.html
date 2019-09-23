@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html lang="es_MX">
+<head>
+    <!--    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+    <title>Logs</title>
+    <link rel="shortcut icon" href="img/wink.png" />
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body class="bg-dark text-white">
+<header>
+    <div class="container">
+        <h1 class="text-center ">
+            Lector de logs
+        </h1>
+        <p class="colorBR" id="totalCost">
+        </p>
+    </div>
+</header>
+<div class="container">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text bg-dark text-white" id="inputGroupFileAddon01">Showplan</span>
+        </div>
+        <div class="custom-file" lang="es_MX">
+            <input type="file" class="custom-file-input bg-secondary text-white" id="showPlan" aria-describedby="inputGroupFileAddon01" lang="es_MX">
+            <label class="custom-file-label" for="showPlan">Selecciona un archivo ...</label>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-8 col-lg-9">
+            <div class="table-responsive">
+                <table class="table table-sm table-bordered table-striped table-dark
+" id = "showPlanTable" >
+                </table>
+            </div>
+            <div id="table_dis">
+                <button class="btn btn-light align-content-center" onclick="exportTableToCSV()">Guardar tabla como CSV</button>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-3">
+            <label for="showPlanVisor" class="text-sm-right" id="dataFile">
+            </label>
+            <textarea class="form-control bg-dark text-white" rows="30" id="showPlanVisor">
+            </textarea>
+        </div>
+    </div>
+</div> -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-3">
+            <label for="showPlanVisor" class="text-sm-right" id="dataFile">
+            </label>
+            <textarea class="form-control bg-dark text-white" rows="30" id="showPlanVisor">
+            </textarea>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container" id="info_dis">
+    <div class="row">
+        <div class="instrucciones border border-light rounded col-sm-12 col-md-6 col-lg-6">
+            <h2 class="text-center">
+                Instrucciones
+            </h2>
+            <ul class="text-justify">
+                <li>
+                    Antes de la ejecuci�n de cualquier proceso ejecutar la instrucci�n: <pre class="text-white-50">set showplan on</pre>
+                </li>
+                <li>
+                    Tambi�n debera de estar activado el panel �Show Log�, si no esta activado o no se ve, utilizar <code>Alt+2</code>
+                </li>
+                <li>
+                    Copiar todo lo mostrado en el �Show Log� seleccionando con click derecho y select all
+                </li>
+                <li>
+                    Guardar el texto copiado en un archivo �txt�, ese archivo es el que se debe de cargar.
+                </li>
+            </ul>
+        </div>
+        <div class="significado border border-light rounded col-sm-12 col-md-6 col-lg-6">
+            <h2 class="text-center">
+                Glosario de t�rminos.
+            </h2>
+            <p class="text-justify">
+                <h3>
+                    I/O cost:
+                </h3>
+                <p>
+                    In/Out (Entrada/Salida) Se refiere a los datos desde o hac�a los discos y/u otros perif�ricos, es probablemente de los recursos m�s lentos. El �Costo Estimado de I/O� se encarga de recopilar los costes por parte de diferentes procesos que aqu� mismo se especificar�n.
+                </p>
+                <h3>
+                    Index Scan:
+                </h3>
+                <p>
+                    El operador Clustered Index Scan examina el �ndice cl�ster especificado en la columna Argument del plan de ejecuci�n de consulta. Si hay un predicado WHERE:(), s�lo se devuelven las filas que lo cumplen. Si la columna Argument contiene la cl�usula ORDERED, el procesador de consultas ha solicitado que la salida de las filas se devuelva en el orden en que las haya ordenado el �ndice cl�ster. Si no hay una cl�usula ORDERED, el motor de almacenamiento recorre el �ndice de la forma �ptima (sin tener que ordenar el resultado).
+                    <br>
+                    Clustered Index Scan es un operador l�gico y f�sico.
+                    <br>
+                    Icono de plan de ejecuci�n gr�fico
+                </p>
+                <h3>
+                    Table Scan:
+                </h3>
+                <p>
+                    El operador Table Scan recupera todas las filas de la tabla especificada en la columna Argument del plan de ejecuci�n de consultas. Si hay un predicado WHERE:() en la columna Argument, s�lo se devuelven las filas que cumplan el predicado.
+                    <br>
+                    Table Scan es un operador l�gico y f�sico.
+                    <br>
+                    Icono de plan de ejecuci�n gr�fico
+                </p>
+                <h3>
+                    Clustered Index Scan:
+                </h3>
+                <p>
+                    Un �ndice agrupado define el orden en el cual los datos son f�sicamente almacenados en una tabla. Los datos de las tablas pueden ser ordenados s�lo en una forma, por lo tanto, s�lo puede haber un �ndice agrupado por tabla.
+                </p>
+                <h3>
+                    Non-Clustered index:
+                </h3>
+            <p>
+                Un �ndice no agrupado no ordena los datos f�sicos dentro de la tabla. De hecho, un �ndice no agrupado es agrupado en un solo lugar y los datos de la tabla son almacenados en otro lugar. Esto es similar a un libro de texto donde el contenido del libro est� localizado en un lugar y el �ndice est� localizado en otro. Esto permite tener m�s de un �ndice no agrupado por tabla.
+                <br>
+                Es importante mencionar que dentro de la tabla los datos ser�n ordenados por un �ndice agrupado. De todos modos, por dentro los datos del �ndice no agrupado son almacenados en un orden espec�fico. El �ndice contiene valores de columna en los cuales el �ndice es creado y la direcci�n del registro a la que el valor de la columna pertenece.
+                <br>
+                Cuando una consulta es lanzada contra una columna en la cual el �ndice es creado, la base de datos primero ir� al �ndice y buscar� la direcci�n de la fila correspondiente en la tabla. Luego, ir� a esa direcci�n de fila y obtendr� otros valores de columna. Es debido a este paso adicional que los �ndices no agrupados son m�s lentos que los �ndices agrupados.
+            </p>
+        </div>
+    </div>
+</div> -->
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/general.js"></script>
+</body>
+<footer class="card-footer">
+    <div class="container text-center">
+        <p>
+            <small>
+                Dudas y sugerencias
+            </small>
+            <br>
+            <small>
+                Jonathan Nicio
+            </small>
+            <br>
+            <a href="mailto:jNicioN@gmail.com">
+                <small>
+                    jNicioN@gmail.com
+                </small>
+            </a>
+        </p>
+    </div>
+</footer>
+</html>
